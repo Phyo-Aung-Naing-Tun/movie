@@ -29,7 +29,6 @@ const Path = () => {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/genres" element={<ShowGenres />} />
       </Routes>
-      {/* <Footer /> */}
     </>
   );
 };

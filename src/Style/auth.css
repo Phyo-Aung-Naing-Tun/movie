@@ -1,0 +1,12 @@
+@media (max-width: 340px) {
+  .width-control {
+    width: 85%;
+  }
+}
+.bg-Gradient {
+  background: linear-gradient(
+    rgb(31, 36, 31),
+    hsl(0, 0%, 100%),
+    rgb(31, 36, 31)
+  );
+}

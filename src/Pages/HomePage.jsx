@@ -4,6 +4,8 @@ import { getMovies, getMoviesGenres } from "../Redux/Services/movieSlice";
 import MovieCard from "../Components/MovieCard";
 import MostRatedMovie from "../Components/MostRatedMovie";
 import { Loader } from "@mantine/core";
+import { motion } from "framer-motion";
+import BouncingArrow from "../Components/BouncingArrow";
 
 const HomePage = () => {
   const [isloading, setIsLoading] = useState(true);
@@ -46,20 +48,41 @@ const HomePage = () => {
     );
   } else {
     return (
-      <div>
-        <h1 className=" text-2xl font-bold text-gray-500 italic text-center  my-5">
+      <div className=" max-w-[100vw] ">
+        <motion.h1
+          initial={{ x: 100, scale: 0 }}
+          whileInView={{ x: 0, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className=" text-2xl font-bold text-gray-500 italic text-center  my-5"
+        >
           Most Rated Movies
-        </h1>
+        </motion.h1>
+
         <MostRatedMovie />
 
-        <h1 className=" text-2xl font-bold text-gray-500 italic text-center  my-5">
+        <motion.h1
+          initial={{ x: 100, scale: 0 }}
+          whileInView={{ x: 0, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className=" text-xl md:text-2xl font-bold text-gray-500 italic text-center relative  my-5"
+        >
           All New Released Movies
-        </h1>
-        <div className=" my-10 flex items-center  w-full flex-wrap justify-center gap-10">
+        </motion.h1>
+        <motion.div
+          layout
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className=" flex  flex-wrap justify-center items-center md:gap-10  "
+        >
           {movies?.map((movie) => (
             <MovieCard key={movie.id} {...movie} />
           ))}
-        </div>
+          <BouncingArrow />
+        </motion.div>
+        <footer className=" flex justify-center items-center tracking-wider text-sm  h-10 bg-black text-white mt-5">
+          MOVIE &copy; 2023 All Right Reserved
+        </footer>
       </div>
     );
   }

@@ -6,7 +6,6 @@ const ReviewPosts = (props) => {
   const [likeToggle, setLikeToggle] = useState();
 
   const datas = props;
-  console.log(datas);
 
   return (
     <div className=" my-4 ">

@@ -1,0 +1,8 @@
+@media (max-width: 760px) {
+  .respon-width {
+    margin: 8px;
+  }
+  .d-none {
+    display: none;
+  }
+}

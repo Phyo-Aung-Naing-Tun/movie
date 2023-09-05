@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 const ReviewModal = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const { reviews } = useSelector((state) => state.movieSlice);
-  console.log(reviews);
   return (
     <div>
       <Modal

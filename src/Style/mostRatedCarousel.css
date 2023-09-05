@@ -1,0 +1,16 @@
+@media (max-width: 767px) {
+  .control-bg-white {
+    color: white;
+  }
+}
+@media (max-width: 280px) {
+  .display-none {
+    display: none;
+  }
+  .width-30 {
+    width: 30px;
+  }
+  .text-size {
+    font-size: 40px;
+  }
+}

@@ -12,7 +12,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
   return (
-    <div className="flex flex-wrap gap-3 sticky top-0 z-[9] items-center py-2 shadow-lg justify-evenly bg-white">
+    <div className="flex w-full flex-wrap gap-3 sticky top-0 z-[9] items-center py-2 shadow-lg justify-evenly bg-white">
       <h1
         onClick={() => {
           dispatch(addFilterGenresId(null));

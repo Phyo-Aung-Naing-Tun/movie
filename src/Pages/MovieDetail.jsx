@@ -1,9 +1,10 @@
 import { Badge, Button, Image, Loader, Rating } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import "../Style/Detail.css";
 import ReviewModal from "../Components/ReviewModal";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+
 import { addReviews } from "../Redux/Services/movieSlice";
 
 const MovieDetail = () => {
@@ -36,7 +37,6 @@ const MovieDetail = () => {
     const reviewDatas = await reviewapi.json();
 
     dispatch(addReviews(reviewDatas.results));
-    console.log(data);
     setSingleMovie(data);
     setIsLoading(false);
   };
@@ -49,68 +49,120 @@ const MovieDetail = () => {
     );
   } else {
     return (
-      <div className=" w-screen h-screen backimg flex py-10 flex-wrap justify-center gap-10 min-w-full items-center ">
-        <div className=" w-[250px] shadow-lg">
-          <img
-            className=" w-full"
-            src={"https://image.tmdb.org/t/p/w200" + singleMovie?.poster_path}
-          />
-        </div>
-        <div className=" w-full p-3 md:w-[500px]">
-          <h1 className=" text-gray-500 font-bold text-3xl">
-            {singleMovie?.title}
-          </h1>
-          <div className=" flex flex-wrap justify-start gap-2 items-center my-4">
-            <Badge className=" lowercase" variant="filled" color="dark">
-              {singleMovie.release_date}
-            </Badge>
-            <Badge className=" lowercase" variant="filled" color="dark">
-              {`${parseInt(singleMovie?.runtime / 60)}h ${
-                singleMovie?.runtime % 60
-              }min`}
-            </Badge>
-            {singleMovie.spoken_languages?.map((i) => (
+      <div className=" w-full min-h-full">
+        <motion.div className="    backimg h-screen flex py-10 flex-wrap justify-center gap-10 min-w-full items-center ">
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className=" w-[250px] shadow-lg"
+          >
+            <img
+              className=" w-full"
+              src={"https://image.tmdb.org/t/p/w200" + singleMovie?.poster_path}
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className=" w-full p-6 md:w-[500px]"
+          >
+            <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className=" text-gray-500 font-bold text-3xl"
+            >
+              {singleMovie?.title}
+            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.2 }}
+              className=" flex flex-wrap justify-start gap-2 items-center my-4"
+            >
               <Badge
-                key={i.id}
-                className=" tracking-wider"
-                variant="outline"
+                key={1}
+                className=" lowercase"
+                variant="filled"
                 color="dark"
               >
-                {i.english_name}
+                {singleMovie.release_date}
               </Badge>
-            ))}
-          </div>
-          <div className=" mb-3 text-sm flex gap-2 italic tracking-wider font-semibold">
-            {singleMovie.genres?.map((item) => (
-              <span key={item.id}>{item.name}</span>
-            ))}
-          </div>
-          <p className=" first-letter:capitalize text-gray-600  tracking-wider leading-6">
-            {singleMovie.overview}
-          </p>
-          <div className=" mt-5 flex-wrap-reverse  flex gap-4">
-            <Link to={-1}>
-              <Button className="bg-black uppercase tracking-wider ">
-                Back
-              </Button>
-            </Link>
-
-            <Button
-              onClick={() => window.open(singleMovie.homepage)}
-              variant="outline"
-              color="dark"
-              className=" uppercase tracking-wider "
+              <Badge
+                key={2}
+                className=" lowercase"
+                variant="filled"
+                color="dark"
+              >
+                {`${parseInt(singleMovie?.runtime / 60)}h ${
+                  singleMovie?.runtime % 60
+                }min`}
+              </Badge>
+              {singleMovie.spoken_languages?.map((i) => (
+                <Badge
+                  key={i.id}
+                  className=" tracking-wider"
+                  variant="outline"
+                  color="dark"
+                >
+                  {i.english_name}
+                </Badge>
+              ))}
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.4 }}
+              className=" mb-3 text-sm flex-wrap flex gap-2 italic tracking-wider font-semibold"
             >
-              view Trailers
-            </Button>
-            <div className=" ms-auto flex justify-center items-center tracking-wider gap-3">
-              <Rating value={singleMovie.vote_average - 3} readOnly />
-            </div>
-          </div>
-          <div className=" mt-5">
-            <ReviewModal />
-          </div>
-        </div>
+              {singleMovie.genres?.map((item) => (
+                <span key={item.id}>{item.name}</span>
+              ))}
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.6 }}
+              className=" first-letter:capitalize text-gray-600  tracking-wider leading-6"
+            >
+              {singleMovie.overview}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.8 }}
+              className=" mt-5 flex-wrap-reverse  flex gap-4"
+            >
+              <Link to={-1}>
+                <Button className="bg-black uppercase tracking-wider ">
+                  Back
+                </Button>
+              </Link>
+
+              <Button
+                onClick={() => window.open(singleMovie.homepage)}
+                variant="outline"
+                color="dark"
+                className=" uppercase tracking-wider "
+              >
+                view Trailers
+              </Button>
+              <div className=" ms-auto flex justify-center items-center tracking-wider gap-3">
+                <Rating value={singleMovie.vote_average - 3} readOnly />
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.8 }}
+              className=" mt-5"
+            >
+              <ReviewModal />
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
     );
   }

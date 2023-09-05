@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import "../Style/CatagoriesDrawer.css";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { addFilterGenresId } from "../Redux/Services/movieSlice";
 import Cookies from "js-cookie";
@@ -16,8 +15,9 @@ const CatagoriesDrawer = () => {
   const { moviesGenres } = useSelector((state) => state?.movieSlice);
   const dispatch = useDispatch();
   const nav = useNavigate();
-  const { user } = useSelector((state) => state.authSlice);
+  // const { user } = useSelector((state) => state.authSlice);
   const token = Cookies.get("token");
+  const [user, setuser] = useState({});
 
   const [getLogOut, { isLoading }] = useGetLogOutMutation();
 
@@ -90,9 +90,9 @@ const CatagoriesDrawer = () => {
         </div>
         <div
           onClick={logOutHandeller}
-          className=" border flex justify-center border-black hover:bg-slate-500 text-black text-center py-1 font-bold mt-2 rounded-lg"
+          className=" border flex justify-center border-black hover:scale-[1.02] transition text-black text-center py-1 font-bold mt-2 rounded-lg"
         >
-          {isLoading ? <Loader color="white" size={"sm"} /> : "Log out"}
+          {isLoading ? <Loader color="black" size={"sm"} /> : "Log out"}
         </div>
       </Drawer>
 
@@ -100,7 +100,10 @@ const CatagoriesDrawer = () => {
         <Button
           variant="outline"
           className=" text-black border border-black"
-          onClick={open}
+          onClick={() => {
+            setuser(JSON.parse(Cookies.get("user")));
+            open();
+          }}
         >
           <GiHamburgerMenu className=" text-xl " />
         </Button>

@@ -1,12 +1,13 @@
 import { Badge, Button, Rating, Text } from "@mantine/core";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { easeIn, easeInOut, motion } from "framer-motion";
 
 const CarouselItems = (props) => {
   const data = props;
   const nav = useNavigate();
   return (
-    <div
+    <motion.div
       style={{
         background: ` url(${
           "https://image.tmdb.org/t/p/w300" + data?.backdrop_path
@@ -17,9 +18,13 @@ const CarouselItems = (props) => {
       }}
       className="  shadow-xl rounded-xl  md:w-[80%] mx-auto overflow-hidden h-[500px]  bg-slate-300"
     >
-      <div className=" flex flex-col gap-3 justify-end p-5 md:p-10 items-start w-full z-[-5] h-full bg-[rgba(0,0,0,0.47)] ">
-        {" "}
-        <h1 className=" text-white tracking-wider font-bold text-2xl">
+      <motion.div className=" flex flex-col gap-3 justify-end p-5 md:p-10 items-start m-0 z-[-5] h-full bg-[rgba(0,0,0,0.58)] ">
+        <motion.h1
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          transition={{ duration: 0.5, easeInOut }}
+          className=" text-white tracking-wider font-bold text-2xl"
+        >
           {data?.title}
           <Badge
             color="violet"
@@ -28,9 +33,9 @@ const CarouselItems = (props) => {
           >
             {data?.release_date?.substring(0, 4)}
           </Badge>
-        </h1>
+        </motion.h1>
         <Text
-          className=" text-gray-200 text-sm font-semibold first-letter:capitalize tracking-wider mb-2"
+          className=" text-gray-200 display-none text-sm font-semibold first-letter:capitalize tracking-wider mb-2"
           color="white"
         >
           {data?.overview.substring(1, 100)}....
@@ -49,8 +54,8 @@ const CarouselItems = (props) => {
         >
           Detail
         </Button>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
