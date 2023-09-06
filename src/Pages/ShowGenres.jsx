@@ -52,7 +52,7 @@ const ShowGenres = () => {
             <Badge
               variant="outline"
               color="dark"
-              className=" w-full h-full text-xl"
+              className=" w-full h-full   text-xl"
             >
               {title}
             </Badge>

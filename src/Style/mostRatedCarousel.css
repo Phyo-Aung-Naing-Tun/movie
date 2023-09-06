@@ -11,6 +11,11 @@
     width: 30px;
   }
   .text-size {
-    font-size: 40px;
+    font-size: 30px;
+  }
+  .display-block {
+    display: block;
+    width: 60px;
+    text-align: center;
   }
 }
