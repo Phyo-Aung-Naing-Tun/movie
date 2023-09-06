@@ -31,7 +31,7 @@ const MovieCard = (prop) => {
           {movieDatas?.title}
         </Text>
       </Group>
-      <div className=" my-2 px-2 d-none">
+      <div className=" mb-2 px-2 d-none">
         <Badge
           color="violet"
           variant="filled"

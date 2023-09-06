@@ -39,7 +39,7 @@ const SignUp = () => {
         className=" fixed top-0 bottom-0 start-0 right-0 bg-[#00000035]"
       ></motion.div>
       <form
-        className="  bg-white z-10 flex shadow-2xl flex-col gap-4 w-[350px] width-control rounded-lg p-5 "
+        className="  bg-white z-10 flex shadow-2xl flex-col gap-4 md:w-[380px] width-control rounded-lg p-5 "
         onSubmit={form.onSubmit(async (values) => {
           try {
             const data = await getSignUp(values);
@@ -92,11 +92,11 @@ const SignUp = () => {
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-xs font-bold tracking-wider"
+          className="text-xs  tracking-wider"
         >
           Already have an account?{" "}
           <Link to={"/login"}>
-            <span>LogIn</span>
+            <span className=" font-bold cursor-pointer">LogIn</span>
           </Link>
         </motion.h3>
         <h3 className="text-xs font-bold text-red-500 tracking-wider">

@@ -42,8 +42,16 @@ const LogIn = () => {
         transition={{ duration: 0.3 }}
         className=" fixed top-0 bottom-0 start-0 right-0 bg-[#00000035]"
       ></motion.div>
+      <motion.div
+        initial={{ scale: 0 }}
+        whileInView={{ scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className=" text-gray-600 uppercase italic text-center tracking-wider px-3 py-2 font-extrabold  mb-5 text-2xl"
+      >
+        Please log in before you enter.
+      </motion.div>
       <form
-        className=" bg-white z-10 flex shadow-2xl flex-col gap-4 w-[350px] width-control rounded-lg p-5 "
+        className=" bg-white z-10 flex shadow-2xl flex-col gap-4 md:w-[380px] width-control rounded-lg p-5 "
         onSubmit={form.onSubmit(async (values) => {
           try {
             const { data } = await getLogIn(values);
@@ -84,11 +92,11 @@ const LogIn = () => {
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-xs font-bold tracking-wider"
+          className="text-xs  tracking-wider"
         >
           Create an account?{" "}
           <Link to={"/signup"}>
-            <span>Sign up</span>
+            <span className=" font-bold cursor-pointer">Sign up</span>
           </Link>
         </motion.h3>
         <h3
